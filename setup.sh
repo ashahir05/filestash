@@ -11,38 +11,10 @@ mkdir -p $GOPATH/src/github.com/mickael-kerjean/
 
 mkdir /tmp/deps && cd /tmp/deps
 
-curl -L -X GET https://github.com/libvips/libvips/releases/download/v8.7.0/vips-8.7.0.tar.gz > libvips.tar.gz
-
-tar -zxf libvips.tar.gz
-
-cd vips-8.7.0/
-
-sudo apt-get install libexif-dev libtiff-dev libjpeg-dev libjpeg-turbo8-dev libpng-dev librsvg2-dev libgif-dev libglib2.0-dev libfftw3-dev libc6-dev libexpat-dev liborc-0.4-dev pkg-config glib2.0-dev libexpat1-dev libtiff5-dev libjpeg-turbo8-dev libgsf-1-dev
-
-sudo ./configure
-
-sudo make -j 6
-
-sudo make install
-
-cd /tmp/deps
-
-curl -X GET https://www.libraw.org/data/LibRaw-0.19.0.tar.gz > libraw.tar.gz
-
-tar -zxf libraw.tar.gz
-
-cd LibRaw-0.19.0/
-
-sudo ./configure
-
-sudo make -j 6
-
-sudo make install
+sudo apt-get install libvips-dev libraw-bin libraw-dev
 
 cd $GOPATH/src/github.com/mickael-kerjean
-
 git clone --depth 1 https://github.com/mickael-kerjean/filestash
-
 cd filestash
 
 mkdir -p ./dist/data/
@@ -50,7 +22,6 @@ mkdir -p ./dist/data/
 cp -r config ./dist/data/
 
 npm install
-
 npm rebuild node-sass
 
 NODE_ENV=production npm run build
@@ -91,8 +62,4 @@ cd $GOPATH/src/github.com/mickael-kerjean/filestash/
 
 sudo apt-get install ca-certificates
 
-sudo mv dist /app
-
-cd /app
-
-sudo ufw allow 8334
+sudo mv dist ~/app
