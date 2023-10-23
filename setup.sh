@@ -62,4 +62,4 @@ cd $GOPATH/src/github.com/mickael-kerjean/filestash/
 
 sudo apt-get install ca-certificates
 
-sudo mv dist ~/app
+sudo mv dist /app
